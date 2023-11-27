@@ -15,7 +15,7 @@ const handler: Handler = {
     for (const file of eventFiles) {
       const filePath = join(eventsPath, file);
       const event: Event = require(filePath);
-      if (event.name != undefined) {
+      if ("name" in event && "execute" in event) {
         if (event.once) {
           client.once(event.name, (...args) => event.execute(client, ...args));
         } else {

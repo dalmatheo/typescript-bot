@@ -19,7 +19,7 @@ function loadHandler() {
   for (const file of handlersFiles) {
     const filePath = join(handlersPath, file);
     const handler: Handler = require(filePath);
-    if (handler.name != null) {
+    if ("name" in handler && "execute" in handler) {
       handlers.push(handler);
       printSucess(`Loaded the handler ${file}.`);
     } else {
